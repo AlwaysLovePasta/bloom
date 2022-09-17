@@ -6,6 +6,8 @@ plugins {
 android {
     compileSdk 33
 
+    namespace 'com.dev_challenge.bloom'
+
     defaultConfig {
         applicationId "com.dev_challenge.bloom"
         minSdk 24
