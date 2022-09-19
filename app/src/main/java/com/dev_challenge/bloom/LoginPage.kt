@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.dev_challenge.bloom.ui.theme.*
 
 @Composable
-fun LoginPage() {
+fun LoginPage(onNavigate: () -> Unit) {
     Box(Modifier
         .fillMaxSize()
         .background(white)) {
@@ -29,7 +29,7 @@ fun LoginPage() {
             LoginFields()
             LoginDescription()
             Spacer(modifier = Modifier.height(16.dp))
-            LoginButton()
+            LoginButton(onNavigate)
         }
     }
 }
@@ -106,15 +106,18 @@ fun LoginDescription() {
 }
 
 @Composable
-fun LoginButton() {
+fun LoginButton(onNavigate: () -> Unit) {
     Box(
         contentAlignment = Alignment.Center
     ) {
         Button(
-            onClick = { /*TODO*/ },
+            onClick = onNavigate,
             shape = Shapes.medium,
             colors = ButtonDefaults.buttonColors(backgroundColor = pink900),
-            modifier = Modifier.fillMaxWidth().padding(horizontal = 16.dp).height(48.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp)
+                .height(48.dp)
         ) {
             Text(text = "Log in", style = Typography.button, color = white)
         }
@@ -124,5 +127,5 @@ fun LoginButton() {
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun PreviewLoginPage() {
-    LoginPage()
+    LoginPage{}
 }

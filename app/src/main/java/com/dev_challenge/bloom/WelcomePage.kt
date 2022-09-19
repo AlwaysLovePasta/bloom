@@ -20,30 +20,27 @@ import androidx.compose.ui.unit.dp
 import com.dev_challenge.bloom.ui.theme.*
 
 @Composable
-fun WelcomePage() {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(pink100)
-    ) {
+fun WelcomePage(onNavigate: () -> Unit) {
+    Box(modifier = Modifier.fillMaxSize().background(pink100)) {
         Image(
             painter = rememberVectorPainter(
                 image = ImageVector.vectorResource(id = R.drawable.ic_light_welcome_bg)
             ),
             contentDescription = "welcome_bg"
         )
-        WelcomeContent()
+        WelcomeContent(onNavigate)
     }
 }
 
 @Composable
-fun WelcomeContent() {
+fun WelcomeContent(onNavigate: () -> Unit) {
     Column(Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(72.dp))
         LeafImage()
         Spacer(modifier = Modifier.height(48.dp))
         WelcomeTitle()
         Spacer(modifier = Modifier.height(40.dp))
-        WelcomeButtons()
+        WelcomeButtons(onNavigate)
     }
 }
 
@@ -90,7 +87,7 @@ fun WelcomeTitle() {
 }
 
 @Composable
-fun WelcomeButtons() {
+fun WelcomeButtons(onNavigate: () -> Unit) {
     Column(
         Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -107,7 +104,7 @@ fun WelcomeButtons() {
             Text(text = "Create account", style = Typography.button, color = white)
         }
         Spacer(modifier = Modifier.height(24.dp))
-        TextButton(onClick = { /*TODO*/ }) {
+        TextButton(onClick = onNavigate) {
             Text(text = "Log in", style = Typography.button, color = pink900)
         }
     }
@@ -117,5 +114,5 @@ fun WelcomeButtons() {
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun PreviewPage() {
-    WelcomePage()
+    WelcomePage{}
 }
