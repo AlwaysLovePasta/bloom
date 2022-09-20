@@ -1,4 +1,4 @@
-package com.dev_challenge.bloom
+package com.dev_challenge.bloom.ui.page
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -13,10 +13,13 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.dev_challenge.bloom.Pages
 import com.dev_challenge.bloom.ui.theme.*
 
 @Composable
-fun LoginPage(onNavigate: () -> Unit) {
+fun LoginPage(navController: NavController) {
     Box(Modifier
         .fillMaxSize()
         .background(MaterialTheme.colors.background)) {
@@ -29,7 +32,7 @@ fun LoginPage(onNavigate: () -> Unit) {
             LoginFields()
             LoginDescription()
             Spacer(modifier = Modifier.height(16.dp))
-            LoginButton(onNavigate)
+            LoginButton(navController)
         }
     }
 }
@@ -114,12 +117,12 @@ fun LoginDescription() {
 }
 
 @Composable
-fun LoginButton(onNavigate: () -> Unit) {
+fun LoginButton(navController: NavController) {
     Box(
         contentAlignment = Alignment.Center
     ) {
         Button(
-            onClick = onNavigate,
+            onClick = { navController.navigate(Pages.HomePage.route) },
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary),
             modifier = Modifier
@@ -135,5 +138,5 @@ fun LoginButton(onNavigate: () -> Unit) {
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun PreviewLoginPage() {
-    LoginPage{}
+    LoginPage(rememberNavController())
 }

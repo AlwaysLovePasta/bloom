@@ -1,4 +1,4 @@
-package com.dev_challenge.bloom
+package com.dev_challenge.bloom.ui.page
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,6 +21,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dev_challenge.bloom.R
 import com.dev_challenge.bloom.ui.theme.*
 
 data class CardItem(val name: String, val image: Painter)

@@ -1,4 +1,4 @@
-package com.dev_challenge.bloom
+package com.dev_challenge.bloom.ui.page
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,10 +14,13 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
+import com.dev_challenge.bloom.Pages
 import com.dev_challenge.bloom.ui.theme.*
 
 @Composable
-fun WelcomePage(onNavigate: () -> Unit) {
+fun WelcomePage(navController: NavController) {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colors.primary)) {
@@ -27,19 +30,19 @@ fun WelcomePage(onNavigate: () -> Unit) {
             ),
             contentDescription = "welcome_bg"
         )
-        WelcomeContent(onNavigate)
+        WelcomeContent(navController)
     }
 }
 
 @Composable
-fun WelcomeContent(onNavigate: () -> Unit) {
+fun WelcomeContent(navController: NavController) {
     Column(Modifier.fillMaxSize()) {
         Spacer(modifier = Modifier.height(72.dp))
         LeafImage()
         Spacer(modifier = Modifier.height(48.dp))
         WelcomeTitle()
         Spacer(modifier = Modifier.height(40.dp))
-        WelcomeButtons(onNavigate)
+        WelcomeButtons(navController)
     }
 }
 
@@ -86,7 +89,7 @@ fun WelcomeTitle() {
 }
 
 @Composable
-fun WelcomeButtons(onNavigate: () -> Unit) {
+fun WelcomeButtons(navController: NavController) {
     Column(
         Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -107,7 +110,7 @@ fun WelcomeButtons(onNavigate: () -> Unit) {
             )
         }
         Spacer(modifier = Modifier.height(24.dp))
-        TextButton(onClick = onNavigate) {
+        TextButton(onClick = { navController.navigate(Pages.LoginPage.route) }) {
             Text(
                 text = "Log in",
                 style = MaterialTheme.typography.button,
@@ -121,5 +124,5 @@ fun WelcomeButtons(onNavigate: () -> Unit) {
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun PreviewPage() {
-    WelcomePage{}
+    WelcomePage(rememberNavController())
 }
