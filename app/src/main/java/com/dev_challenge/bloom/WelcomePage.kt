@@ -3,10 +3,7 @@ package com.dev_challenge.bloom
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
-import androidx.compose.material.Text
-import androidx.compose.material.TextButton
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -21,10 +18,12 @@ import com.dev_challenge.bloom.ui.theme.*
 
 @Composable
 fun WelcomePage(onNavigate: () -> Unit) {
-    Box(modifier = Modifier.fillMaxSize().background(pink100)) {
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colors.primary)) {
         Image(
             painter = rememberVectorPainter(
-                image = ImageVector.vectorResource(id = R.drawable.ic_light_welcome_bg)
+                image = ImageVector.vectorResource(id = MaterialTheme.assets.background)
             ),
             contentDescription = "welcome_bg"
         )
@@ -48,7 +47,7 @@ fun WelcomeContent(onNavigate: () -> Unit) {
 fun LeafImage() {
     Image(
         painter = rememberVectorPainter(
-            image = ImageVector.vectorResource(id = R.drawable.ic_light_welcome_illos)
+            image = ImageVector.vectorResource(id = MaterialTheme.assets.illos)
         ),
         contentDescription = "welcome_illos",
         modifier = Modifier
@@ -65,7 +64,7 @@ fun WelcomeTitle() {
     ) {
         Image(
             painter = rememberVectorPainter(
-                image = ImageVector.vectorResource(id = R.drawable.ic_light_logo)
+                image = ImageVector.vectorResource(id = MaterialTheme.assets.logo)
             ),
             contentDescription = "welcome_logo",
             Modifier.wrapContentSize()
@@ -78,8 +77,8 @@ fun WelcomeTitle() {
         ) {
             Text(
                 text = "Beautiful home garden solutions",
-                style = Typography.subtitle1,
-                color = gray,
+                style = MaterialTheme.typography.subtitle1,
+                color = MaterialTheme.colors.onPrimary,
                 textAlign = TextAlign.Center
             )
         }
@@ -98,14 +97,22 @@ fun WelcomeButtons(onNavigate: () -> Unit) {
                 .height(48.dp)
                 .padding(horizontal = 16.dp)
                 .fillMaxWidth()
-                .clip(Shapes.medium),
-            colors = ButtonDefaults.buttonColors(backgroundColor = pink900)
+                .clip(MaterialTheme.shapes.medium),
+            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
         ) {
-            Text(text = "Create account", style = Typography.button, color = white)
+            Text(
+                text = "Create account",
+                style = MaterialTheme.typography.button,
+                color = MaterialTheme.colors.onSecondary
+            )
         }
         Spacer(modifier = Modifier.height(24.dp))
         TextButton(onClick = onNavigate) {
-            Text(text = "Log in", style = Typography.button, color = pink900)
+            Text(
+                text = "Log in",
+                style = MaterialTheme.typography.button,
+                color = MaterialTheme.colors.onPrimary
+            )
         }
     }
 

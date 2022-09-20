@@ -19,7 +19,7 @@ import com.dev_challenge.bloom.ui.theme.*
 fun LoginPage(onNavigate: () -> Unit) {
     Box(Modifier
         .fillMaxSize()
-        .background(white)) {
+        .background(MaterialTheme.colors.background)) {
         Column(
             Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -42,8 +42,8 @@ fun LoginTitle() {
     ) {
         Text(
             text = "Login with email",
-            style = Typography.h1,
-            color = gray,
+            style = MaterialTheme.typography.h1,
+            color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center
         )
     }
@@ -62,7 +62,11 @@ fun LoginFields() {
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text(text = "Email address", style = Typography.body1, color = gray) },
+            label = { Text(
+                    text = "Email address",
+                    style = MaterialTheme.typography.body1,
+                    color = MaterialTheme.colors.onBackground
+                ) },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
@@ -70,7 +74,11 @@ fun LoginFields() {
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text(text = "Password (8+ characters)", style = Typography.body1, color = gray) },
+            label = { Text(
+                text = "Password (8+ characters)",
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onBackground
+            ) },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(56.dp)
@@ -98,8 +106,8 @@ fun LoginDescription() {
                     append("Privacy Policy")
                 }
             },
-            style = Typography.body2,
-            color = gray,
+            style = MaterialTheme.typography.body2,
+            color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Center
         )
     }
@@ -112,14 +120,14 @@ fun LoginButton(onNavigate: () -> Unit) {
     ) {
         Button(
             onClick = onNavigate,
-            shape = Shapes.medium,
-            colors = ButtonDefaults.buttonColors(backgroundColor = pink900),
+            shape = MaterialTheme.shapes.medium,
+            colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary),
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
                 .height(48.dp)
         ) {
-            Text(text = "Log in", style = Typography.button, color = white)
+            Text(text = "Log in", style = Typography.button, color = MaterialTheme.colors.onSecondary)
         }
     }
 }

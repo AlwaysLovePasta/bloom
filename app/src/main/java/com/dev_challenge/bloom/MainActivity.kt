@@ -11,7 +11,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dev_challenge.bloom.ui.theme.BloomTheme
-import com.dev_challenge.bloom.ui.theme.white
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
@@ -25,7 +24,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val systemUiController = rememberSystemUiController()
-                    systemUiController.setSystemBarsColor(color = white)
+                    systemUiController.setSystemBarsColor(color = MaterialTheme.colors.background)
 
                     val navController = rememberNavController()
                     NavHost(

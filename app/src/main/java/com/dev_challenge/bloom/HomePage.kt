@@ -33,7 +33,7 @@ fun HomePage() {
         Column(
             Modifier
                 .fillMaxSize()
-                .background(white)
+                .background(MaterialTheme.colors.background)
                 .padding(horizontal = 16.dp)
                 .padding(bottom = it.calculateBottomPadding()),
             horizontalAlignment = Alignment.CenterHorizontally
@@ -57,7 +57,11 @@ fun HomeSearchBar() {
         OutlinedTextField(
             value = searchText,
             onValueChange = { searchText = it },
-            label = { Text(text = "Search", style = Typography.body1, color = gray) },
+            label = { Text(
+                text = "Search",
+                style = MaterialTheme.typography.body1,
+                color = MaterialTheme.colors.onBackground
+            ) },
             leadingIcon = { Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = "search_icon",
@@ -80,8 +84,8 @@ fun HomeCardTitle() {
     ) {
         Text(
             text = "Browse themes",
-            style = Typography.h1,
-            color = gray,
+            style = MaterialTheme.typography.h1,
+            color = MaterialTheme.colors.onBackground,
             textAlign = TextAlign.Start
         )
     }
@@ -112,8 +116,8 @@ fun HomeCardRows() {
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = cardItem.name,
-                        style = Typography.h2,
-                        color = gray,
+                        style = MaterialTheme.typography.h2,
+                        color = MaterialTheme.colors.onBackground,
                         modifier = Modifier.padding(start = 16.dp),
                     )
                 }
@@ -134,7 +138,8 @@ fun HomeImageTitle() {
     ) {
         Text(
             text = "Design your home garden",
-            style = Typography.h1, color = gray,
+            style = MaterialTheme.typography.h1,
+            color = MaterialTheme.colors.onBackground
         )
         Icon(
             imageVector = ImageVector.vectorResource(id = R.drawable.ic_filter_list),
@@ -181,16 +186,22 @@ fun HomeImageList() {
                         Column {
                             Text(
                                 text = it.name,
-                                style = Typography.h2,
-                                color = gray,
+                                style = MaterialTheme.typography.h2,
+                                color = MaterialTheme.colors.onBackground,
                                 modifier = Modifier.paddingFromBaseline(top = 24.dp)
                             )
-                            Text(text = "This is a description", style = Typography.body1, color = gray)
+                            Text(
+                                text = "This is a description",
+                                style = MaterialTheme.typography.body1,
+                                color = MaterialTheme.colors.onBackground
+                            )
                         }
                         Checkbox(
                             checked = checked ,
                             onCheckedChange = { checked = it },
-                            colors = CheckboxDefaults.colors(checkedColor = gray),
+                            colors = CheckboxDefaults.colors(
+                                checkedColor = MaterialTheme.colors.secondary
+                            ),
                             modifier = Modifier
                                 .size(24.dp)
                                 .padding(top = 24.dp)
@@ -217,14 +228,18 @@ fun BottomBar() {
         Modifier
             .fillMaxWidth()
             .height(56.dp),
-        backgroundColor = pink100
+        backgroundColor = MaterialTheme.colors.primary
     ) {
         navItems.forEach {
             BottomNavigationItem(
                 selected = ("Home" == it.name),
                 onClick = { /*TODO*/ },
                 icon = { Icon(imageVector = it.icon, contentDescription = it.name, Modifier.size(24.dp)) },
-                label = { Text(text = it.name, style = Typography.caption, color = gray) }
+                label = { Text(
+                    text = it.name,
+                    style = MaterialTheme.typography.caption,
+                    color = MaterialTheme.colors.onPrimary
+                ) }
             )
         }
     }
