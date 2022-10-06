@@ -163,56 +163,60 @@ fun HomeImageList() {
         ListItem(painterResource(id = R.drawable.pothos), "Pothos")
     )
 
-    var checked by remember { mutableStateOf(false) }
-    
     LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         items(items = listItems, key = { it.name }) {
-            Row(Modifier
-                .fillMaxWidth()
-                .height(64.dp)
-            ) {
-                Image(
-                    painter = it.image, 
-                    contentDescription = it.name,
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .size(64.dp)
-                        .clip(Shapes.small)
-                )
-                Column(Modifier.padding(start = 16.dp)) {
-                    Row (
-                        Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ){
-                        Column {
-                            Text(
-                                text = it.name,
-                                style = MaterialTheme.typography.h2,
-                                color = MaterialTheme.colors.onBackground,
-                                modifier = Modifier.paddingFromBaseline(top = 24.dp)
-                            )
-                            Text(
-                                text = "This is a description",
-                                style = MaterialTheme.typography.body1,
-                                color = MaterialTheme.colors.onBackground
-                            )
-                        }
-                        Checkbox(
-                            checked = checked ,
-                            onCheckedChange = { checked = it },
-                            colors = CheckboxDefaults.colors(
-                                checkedColor = MaterialTheme.colors.secondary
-                            ),
-                            modifier = Modifier
-                                .size(24.dp)
-                                .padding(top = 24.dp)
-                        )
-                    }
-                    Divider(Modifier
-                        .fillMaxWidth()
-                        .paddingFromBaseline(top = 24.dp))
+            ImageListItem(item = it)
+        }
+    }
+}
+
+@Composable
+fun ImageListItem(item: ListItem) {
+    var checked by remember { mutableStateOf(false) }
+    Row(Modifier
+        .fillMaxWidth()
+        .height(64.dp)
+    ) {
+        Image(
+            painter = item.image,
+            contentDescription = item.name,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .size(64.dp)
+                .clip(Shapes.small)
+        )
+        Column(Modifier.padding(start = 16.dp)) {
+            Row (
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ){
+                Column {
+                    Text(
+                        text = item.name,
+                        style = MaterialTheme.typography.h2,
+                        color = MaterialTheme.colors.onBackground,
+                        modifier = Modifier.paddingFromBaseline(top = 24.dp)
+                    )
+                    Text(
+                        text = "This is a description",
+                        style = MaterialTheme.typography.body1,
+                        color = MaterialTheme.colors.onBackground
+                    )
                 }
+                Checkbox(
+                    checked = checked ,
+                    onCheckedChange = { checked = it },
+                    colors = CheckboxDefaults.colors(
+                        checkedColor = MaterialTheme.colors.secondary
+                    ),
+                    modifier = Modifier
+                        .size(24.dp)
+                        .padding(top = 24.dp)
+                )
             }
+            Divider(Modifier
+                .fillMaxWidth()
+                .paddingFromBaseline(top = 24.dp))
         }
     }
 }
