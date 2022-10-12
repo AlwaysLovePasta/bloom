@@ -21,11 +21,13 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dev_challenge.bloom.BloomViewModel
+import com.dev_challenge.bloom.ImageItem
 import com.dev_challenge.bloom.R
 import com.dev_challenge.bloom.ui.theme.*
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 data class CardItem(val name: String, val image: Painter)
-data class ListItem(val image: Painter, val name: String)
 data class NavItem(val name: String, val icon: ImageVector)
 
 @Composable
@@ -153,32 +155,24 @@ fun HomeImageTitle() {
 }
 
 @Composable
-fun HomeImageList() {
-    val listItems = listOf(
-        ListItem(painterResource(id = R.drawable.monstera), "Monstera"),
-        ListItem(painterResource(id = R.drawable.aglaonema), "Aglaonema"),
-        ListItem(painterResource(id = R.drawable.peace_lily), "Peace lily"),
-        ListItem(painterResource(id = R.drawable.fiddle_leaf), "Fiddle leaf tree"),
-        ListItem(painterResource(id = R.drawable.snake_plant), "Snake plant"),
-        ListItem(painterResource(id = R.drawable.pothos), "Pothos")
-    )
-
+fun HomeImageList(viewModel: BloomViewModel = viewModel()) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        items(items = listItems, key = { it.name }) {
-            ImageListItem(item = it)
+        items(items = viewModel.items, key = { it.name }) { item ->
+            ImageListItem(item = item, checked = item.checked) { checked ->
+                viewModel.changeItemChangeStatus(item, checked)
+            }
         }
     }
 }
 
 @Composable
-fun ImageListItem(item: ListItem) {
-    var checked by remember { mutableStateOf(false) }
+fun ImageListItem(item: ImageItem, checked: Boolean, onCheckedChange: (Boolean) -> Unit) {
     Row(Modifier
         .fillMaxWidth()
         .height(64.dp)
     ) {
         Image(
-            painter = item.image,
+            painter = painterResource(id = item.imageRes),
             contentDescription = item.name,
             contentScale = ContentScale.Crop,
             modifier = Modifier
@@ -204,8 +198,8 @@ fun ImageListItem(item: ListItem) {
                     )
                 }
                 Checkbox(
-                    checked = checked ,
-                    onCheckedChange = { checked = it },
+                    checked = checked,
+                    onCheckedChange = onCheckedChange,
                     colors = CheckboxDefaults.colors(
                         checkedColor = MaterialTheme.colors.secondary
                     ),
