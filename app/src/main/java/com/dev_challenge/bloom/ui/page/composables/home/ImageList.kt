@@ -21,7 +21,7 @@ fun ImageList(viewModel: BloomViewModel = viewModel()) {
     LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
         items(items = viewModel.items, key = { it.name }) { item ->
             ImageListItem(item = item, checked = item.checked) { checked ->
-                viewModel.changeItemChangeStatus(item, checked)
+                viewModel.changeItemCheckStatus(item, checked)
             }
         }
     }

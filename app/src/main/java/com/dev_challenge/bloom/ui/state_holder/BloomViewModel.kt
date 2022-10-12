@@ -24,7 +24,7 @@ class BloomViewModel : ViewModel() {
     private val _items = imageList.toMutableStateList()
     val items: List<ImageItem>
         get() = _items
-    fun changeItemChangeStatus(item: ImageItem, checked: Boolean) {
+    fun changeItemCheckStatus(item: ImageItem, checked: Boolean) {
         items.find { it.name == item.name }?.let { it.checked = checked }
     }
 }
