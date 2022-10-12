@@ -1,10 +1,11 @@
-package com.dev_challenge.bloom
+package com.dev_challenge.bloom.ui.state_holder
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
+import com.dev_challenge.bloom.R
 
 class ImageItem(val imageRes: Int, val name: String, initialChecked: Boolean = false) {
     var checked by mutableStateOf(initialChecked)

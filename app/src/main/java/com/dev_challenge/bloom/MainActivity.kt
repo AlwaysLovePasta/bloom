@@ -37,11 +37,11 @@ fun BloomApp() {
         val navController = rememberNavController()
         NavHost(
             navController = navController,
-            startDestination = Pages.WelcomePage.route
+            startDestination = Router.WelcomePage.route
         ) {
-            composable(Pages.WelcomePage.route) { WelcomePage(navController) }
-            composable(Pages.LoginPage.route) { LoginPage(navController) }
-            composable(Pages.HomePage.route) { HomePage() }
+            composable(Router.WelcomePage.route) { WelcomePage(navController) }
+            composable(Router.LoginPage.route) { LoginPage(navController) }
+            composable(Router.HomePage.route) { HomePage() }
         }
     }
 }
