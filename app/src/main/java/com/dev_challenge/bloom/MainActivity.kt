@@ -8,6 +8,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -22,7 +23,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val systemUiController = rememberSystemUiController()
-            systemUiController.setSystemBarsColor(color = MaterialTheme.colors.background)
+            systemUiController.setSystemBarsColor(color = Color.Transparent, darkIcons = true)
             BloomTheme { BloomApp() }
         }
     }
