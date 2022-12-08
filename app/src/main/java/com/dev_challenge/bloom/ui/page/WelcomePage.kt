@@ -10,13 +10,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.dev_challenge.bloom.ui.page.composables.welcome.Content
 import com.dev_challenge.bloom.ui.theme.*
 
 @Composable
-fun WelcomePage(navController: NavController) {
+fun WelcomePage() {
     Box(modifier = Modifier
         .fillMaxSize()
         .background(MaterialTheme.colors.primary)) {
@@ -26,12 +24,12 @@ fun WelcomePage(navController: NavController) {
             ),
             contentDescription = "welcome_bg"
         )
-        Content(navController)
+        Content()
     }
 }
 
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun PreviewPage() {
-    WelcomePage(rememberNavController())
+    WelcomePage()
 }

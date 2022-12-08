@@ -8,12 +8,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.dev_challenge.bloom.ui.page.composables.login.*
 
 @Composable
-fun LoginPage(navController: NavController) {
+fun LoginPage() {
     Box(Modifier
         .fillMaxSize()
         .background(MaterialTheme.colors.background)) {
@@ -26,7 +24,7 @@ fun LoginPage(navController: NavController) {
             Fields()
             Description()
             Spacer(modifier = Modifier.height(16.dp))
-            LoginButton(navController = navController)
+            LoginButton()
         }
     }
 }
@@ -34,5 +32,5 @@ fun LoginPage(navController: NavController) {
 @Preview(widthDp = 360, heightDp = 640)
 @Composable
 fun PreviewLoginPage() {
-    LoginPage(rememberNavController())
+    LoginPage()
 }
