@@ -28,9 +28,10 @@ fun RouterBuilder(navController: NavHostController) {
     }
 }
 
-internal val LocalNavController = staticCompositionLocalOf<NavHostController?> { null }
+internal val LocalNavController = 
+    staticCompositionLocalOf<NavHostController> { error("Must provide default value in CompositionLocalProvider!") }
 
-val RouterController: NavHostController?
+val routerController: NavHostController
     @Composable
     @ReadOnlyComposable
     get() = LocalNavController.current

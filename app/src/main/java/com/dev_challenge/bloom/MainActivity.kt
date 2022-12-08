@@ -7,10 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.compose.rememberNavController
 import com.dev_challenge.bloom.ui.theme.BloomTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -31,8 +29,6 @@ fun BloomApp() {
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colors.background
     ) {
-        CompositionLocalProvider(LocalNavController provides rememberNavController()) {
-            LocalNavController.current?.let { RouterBuilder(navController = it) }
-        }
+        RouterBuilder(navController = routerController)
     }
 }

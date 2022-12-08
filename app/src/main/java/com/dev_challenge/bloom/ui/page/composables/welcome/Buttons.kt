@@ -9,10 +9,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.dev_challenge.bloom.Router
-import com.dev_challenge.bloom.RouterController
+import com.dev_challenge.bloom.routerController
 
 @Composable
-fun Buttons(navController: NavController? = RouterController) {
+fun Buttons(navController: NavController = routerController) {
     Column(
         Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -33,9 +33,9 @@ fun Buttons(navController: NavController? = RouterController) {
             )
         }
         Spacer(modifier = Modifier.height(24.dp))
-        TextButton(onClick = {
-            navController?.apply { navigate(Router.LoginPage.routeName) }
-        }) {
+        TextButton(
+            onClick = { navController.navigate(Router.LoginPage.routeName) }
+        ) {
             Text(
                 text = "Log in",
                 style = MaterialTheme.typography.button,

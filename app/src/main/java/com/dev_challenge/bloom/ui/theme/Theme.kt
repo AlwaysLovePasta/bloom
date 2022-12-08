@@ -6,6 +6,8 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.navigation.compose.rememberNavController
+import com.dev_challenge.bloom.LocalNavController
 
 private val DarkColorPalette = darkColors(
     primary = Green900,
@@ -47,7 +49,10 @@ fun BloomTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable 
         lightBloomAssets()
     }
 
-    CompositionLocalProvider(LocalAssets provides assets) {
+    CompositionLocalProvider(
+        LocalAssets provides assets,
+        LocalNavController provides rememberNavController()
+    ) {
         MaterialTheme(
             colors = colors,
             typography = Typography,

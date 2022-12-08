@@ -14,16 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.dev_challenge.bloom.Router
-import com.dev_challenge.bloom.RouterController
+import com.dev_challenge.bloom.routerController
 import com.dev_challenge.bloom.ui.theme.Typography
 
 @Composable
-fun LoginButton(navController: NavController? = RouterController) {
+fun LoginButton(navController: NavController = routerController) {
     Box(
         contentAlignment = Alignment.Center
     ) {
         Button(
-            onClick = { navController?.apply { navigate(Router.HomePage.routeName) } },
+            onClick = { navController.navigate(Router.HomePage.routeName) },
             shape = MaterialTheme.shapes.medium,
             colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary),
             modifier = Modifier
